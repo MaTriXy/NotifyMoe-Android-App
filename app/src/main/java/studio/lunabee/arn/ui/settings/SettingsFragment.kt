@@ -16,23 +16,14 @@ class SettingsFragment : Fragment(), Injectable {
     //private lateinit var userViewModel: UserViewModel
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         return inflater.inflate(R.layout.fragment_user, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-    }
-
-    companion object {
-        private const val LOGIN_KEY = "login"
-
-        fun create(login: String): SettingsFragment {
-            val userFragment = SettingsFragment()
-            val bundle = Bundle()
-            bundle.putString(LOGIN_KEY, login)
-            userFragment.arguments = bundle
-            return userFragment
-        }
     }
 }

@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'realm-android'
+apply plugin: 'androidx.navigation.safeargs'
 apply plugin: 'kotlin-kapt'
 kapt {
     correctErrorTypes = true
@@ -91,6 +92,7 @@ dependencies {
 
 
     implementation "com.github.Zhuinden:realm-monarchy:0.2.2"
+    kapt 'dk.ilios:realmfieldnameshelper:1.1.1'
 
     implementation "com.mikepenz:fastadapter:3.2.5"
     implementation "com.mikepenz:fastadapter-commons:3.2.5"

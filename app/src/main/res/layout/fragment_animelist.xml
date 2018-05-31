@@ -7,15 +7,26 @@
     android:layout_height="match_parent"
     tools:context=".ui.HomeActivity">
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recyclerView"
+    <studio.lunabee.arn.ui.common.statefulview.StatefulView
+        android:id="@+id/statefulView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scrollbars="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipChildren="false"
+            android:clipToPadding="true"
+            android:scrollbars="vertical"
+            tools:layoutManager="android.support.v7.widget.GridLayoutManager"
+            tools:listitem="@layout/item_simple_animelist"
+            tools:spanCount="@integer/animelist_columns" />
+    </studio.lunabee.arn.ui.common.statefulview.StatefulView>
 
 </android.support.constraint.ConstraintLayout>

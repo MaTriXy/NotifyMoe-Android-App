@@ -1,5 +1,5 @@
 <resources>
-    <string name="app.name">MAMAMAMA</string>
+    <string name="app_name">AniNotifier</string>
 
     <string name="tab.myprofile.title">My profile</string>
     <string name="common.empty.title">Oh oh ?</string>
@@ -9,4 +9,7 @@
     <string name="common.error.no_result">No result</string>
     <string name="network.no_connection.error.title">No connexion</string>
     <string name="network.no_connection.error.description">We\'re not able to connect to the server, do you have internet?</string>
+    <string name="user_cover_image_cd">user cover image</string>
+    <string name="user_avatar_image_cd">user avatar image</string>
+    <string name="anime_cover_image_cd">anime cover image</string>
 </resources>

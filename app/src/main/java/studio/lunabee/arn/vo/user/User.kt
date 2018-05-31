@@ -11,11 +11,9 @@ import io.realm.annotations.Required
 open class User : RealmObject() {
     @field:PrimaryKey
     @field:Required
-    var id: String? = null
-    @field:SerializedName("nick")
+    var id: String = ""
     @field:Index
-    var nickName: String? = null
-    var firstName: String? = null
-    var lastName: String? = null
-    var role: String? = null
+    @field:SerializedName("nick")
+    var nickName: String = ""
+    var role: String = ""
 }

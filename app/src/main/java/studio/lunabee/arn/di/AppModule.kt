@@ -11,27 +11,32 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import studio.lunabee.arn.api.NotifyMoeService
+import studio.lunabee.arn.db.AnimeListDao
 import studio.lunabee.arn.db.UserDao
+import studio.lunabee.arn.db.animeListDao
 import studio.lunabee.arn.db.userDao
 import studio.lunabee.arn.util.LiveDataCallAdapterFactory
-import studio.lunabee.arn.vo.animelist.AnimeListItem
-import studio.lunabee.arn.vo.animelist.AnimeListItemDeserializer
+import studio.lunabee.arn.vo.animelist.AnimeListTypeAdapterFactory
 import javax.inject.Singleton
 
 @Module(includes = [ViewModelModule::class])
 class AppModule {
+
     @Singleton
     @Provides
     fun provideGithubService(): NotifyMoeService {
-        val gson = GsonBuilder().registerTypeAdapter(AnimeListItem::class.java,
-            AnimeListItemDeserializer()).create()
-
+        val gson = GsonBuilder()
+            .registerTypeAdapterFactory(AnimeListTypeAdapterFactory())
+            .create()
         val logging = HttpLoggingInterceptor()
         logging.level = HttpLoggingInterceptor.Level.BODY
-        val client = OkHttpClient.Builder().addInterceptor(logging).build()
+        val client = OkHttpClient.Builder()
+            // .addInterceptor(logging)
+            .build()
 
         return Retrofit.Builder()
-            .baseUrl("https://notify.moe/").addConverterFactory(GsonConverterFactory.create(gson))
+            .baseUrl("https://notify.moe/")
+            .addConverterFactory(GsonConverterFactory.create(gson))
             .addCallAdapterFactory(LiveDataCallAdapterFactory())
             .addCallAdapterFactory(CoroutineCallAdapterFactory())
             .client(client)
@@ -42,6 +47,10 @@ class AppModule {
     @Singleton
     @Provides
     fun provideUserDao(monarchy: Monarchy): UserDao = monarchy.userDao()
+
+    @Singleton
+    @Provides
+    fun provideAnimeListDao(monarchy: Monarchy): AnimeListDao = monarchy.animeListDao()
 
     @Provides
     @Singleton
